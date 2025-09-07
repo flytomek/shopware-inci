@@ -2,7 +2,7 @@
   "name": "codematic/shopware6-inci",
   "description": "Cosmetic ingredients database plugin for Shopware 6",
   "type": "shopware-platform-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     {
       "name": "Codematic"
