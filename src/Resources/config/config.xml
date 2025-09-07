@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>INCI Plugin Configuration</title>
+        <title lang="de-DE">INCI Plugin Konfiguration</title>
+        <title lang="pl-PL">Konfiguracja wtyczki INCI</title>
+    </card>
+
+    <card>
+        <title>Meta Information</title>
+        <title lang="de-DE">Meta-Informationen</title>
+        <title lang="pl-PL">Informacje meta</title>
+
+        <input-field>
+            <name>metaTitleTemplate</name>
+            <label>Meta Title Template</label>
+            <label lang="de-DE">Meta-Titel Vorlage</label>
+            <label lang="pl-PL">Szablon tytułu meta</label>
+            <helpText>Available placeholders: {name}, {polishName}</helpText>
+            <helpText lang="de-DE">Verfügbare Platzhalter: {name}, {polishName}</helpText>
+            <helpText lang="pl-PL">Dostępne zmienne: {name}, {polishName}</helpText>
+            <defaultValue>{name}{polishNameBrackets} - opis i działanie</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>metaDescriptionDefault</name>
+            <label>Default Meta Description Template</label>
+            <label lang="de-DE">Standard Meta-Beschreibung Vorlage</label>
+            <label lang="pl-PL">Domyślny szablon opisu meta</label>
+            <helpText>Used when ingredient has no description. Placeholders: {name}</helpText>
+            <helpText lang="de-DE">Verwendet wenn Zutat keine Beschreibung hat. Platzhalter: {name}</helpText>
+            <helpText lang="pl-PL">Używany gdy składnik nie ma opisu. Zmienne: {name}</helpText>
+            <defaultValue>Szczegółowe informacje o składniku kosmetycznym {name} - bezpieczeństwo, właściwości i zastosowanie.</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>listPageMetaTitle</name>
+            <label>Listing Page Meta Title</label>
+            <label lang="de-DE">Listenseiten Meta-Titel</label>
+            <label lang="pl-PL">Tytuł meta strony listy</label>
+            <defaultValue>Baza Składników INCI - kompletny przewodnik po kosmetykach</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>listPageMetaDescription</name>
+            <label>Listing Page Meta Description</label>
+            <label lang="de-DE">Listenseiten Meta-Beschreibung</label>
+            <label lang="pl-PL">Opis meta strony listy</label>
+            <defaultValue>Odkryj wszystko o składnikach kosmetycznych. Kompleksowa baza wiedzy o bezpieczeństwie i właściwościach składników INCI. Sprawdź oceny bezpieczeństwa i zastosowanie.</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Page Content</title>
+        <title lang="de-DE">Seiten-Inhalt</title>
+        <title lang="pl-PL">Zawartość strony</title>
+
+        <input-field type="textarea">
+            <name>listPageTitle</name>
+            <label>Listing Page Title</label>
+            <label lang="de-DE">Listenseiten-Titel</label>
+            <label lang="pl-PL">Tytuł strony listy</label>
+            <defaultValue>Baza Składników INCI</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>listPageDescription</name>
+            <label>Listing Page Description</label>
+            <label lang="de-DE">Listenseiten-Beschreibung</label>
+            <label lang="pl-PL">Opis strony listy</label>
+            <defaultValue>Odkryj wszystko o składnikach kosmetycznych. Kompleksowa baza wiedzy o bezpieczeństwie i właściwościach składników INCI.</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>emptyListMessage</name>
+            <label>Empty List Message</label>
+            <label lang="de-DE">Nachricht für leere Liste</label>
+            <label lang="pl-PL">Komunikat pustej listy</label>
+            <defaultValue>W bazie nie ma jeszcze żadnych składników INCI.</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>AI Prompts Configuration</title>
+        <title lang="de-DE">KI-Prompts Konfiguration</title>
+        <title lang="pl-PL">Konfiguracja promptów AI</title>
+
+
+        <input-field type="textarea">
+            <name>descriptionPrompt</name>
+            <label>Description Generation Prompt</label>
+            <label lang="de-DE">Beschreibungs-Generierungs-Prompt</label>
+            <label lang="pl-PL">Prompt generowania opisu</label>
+            <helpText>Placeholder: {INGREDIENT_NAME}</helpText>
+            <defaultValue>Napisz szczegółowy opis składnika kosmetycznego "{INGREDIENT_NAME}" w języku polskim.
+
+Opis powinien być:
+- Napisany w języku polskim
+- Długość: 300-500 słów
+- Zrozumiały dla przeciętnego konsumenta
+- Oparty na faktach naukowych
+- Profesjonalny, ale przystępny
+
+Uwzględnij:
+1. Co to za składnik (pochodzenie, struktura chemiczna w prostych słowach)
+2. Jak działa w produktach kosmetycznych
+3. Główne korzyści dla skóry/włosów
+4. W jakich produktach można go znaleźć
+5. Dlaczego producenci go stosują
+
+Unikaj:
+- Medycznych twierdzeń
+- Zbyt skomplikowanego żargonu
+- Przesadnych obietnic
+- Negatywnych stwierdzeń (te będą w sekcji bezpieczeństwa)
+
+Napisz opis tak, jakbyś tłumaczył to przyjacielowi, który chce zrozumieć, co nakłada na swoją skórę.</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>safetyPrompt</name>
+            <label>Safety Information Prompt</label>
+            <label lang="de-DE">Sicherheitsinformationen-Prompt</label>
+            <label lang="pl-PL">Prompt informacji o bezpieczeństwie</label>
+            <helpText>Placeholder: {INGREDIENT_NAME}</helpText>
+            <defaultValue>Napisz informacje o bezpieczeństwie składnika kosmetycznego "{INGREDIENT_NAME}" w języku polskim.
+
+Informacje powinny zawierać:
+1. Ogólną ocenę bezpieczeństwa składnika
+2. Potencjalne działania niepożądane (jeśli występują)
+3. Grupy osób, które powinny być ostrożne lub unikać składnika
+4. Zalecenia dotyczące stosowania
+5. Referencje do opinii organizacji regulacyjnych (FDA, CIR, UE)
+
+Wymagania:
+- Język: polski
+- Długość: 200-400 słów
+- Ton: obiektywny, oparty na faktach
+- Unikaj alarmowania bez podstaw
+- Jeśli składnik jest bezpieczny, podkreśl to
+- Jeśli są ograniczenia, wyjaśnij je jasno
+
+Format:
+Rozpocznij od ogólnej oceny bezpieczeństwa, następnie przejdź do szczegółów i ewentualnych ostrzeżeń.</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>mainFunctionsPrompt</name>
+            <label>Main Functions Prompt</label>
+            <label lang="de-DE">Hauptfunktionen-Prompt</label>
+            <label lang="pl-PL">Prompt głównych funkcji</label>
+            <helpText>Placeholder: {INGREDIENT_NAME}</helpText>
+            <defaultValue>Określ główne funkcje składnika kosmetycznego "{INGREDIENT_NAME}".
+
+Podaj maksymalnie 3-5 najważniejszych funkcji tego składnika w produktach kosmetycznych.
+
+Wybieraj spośród popularnych kategorii funkcji:
+- Nawilżacz (Humectant)
+- Emulgator (Emulsifier)
+- Konserwant (Preservative)
+- Rozpuszczalnik (Solvent)
+- Substancja aktywna (Active Ingredient)
+- Stabilizator (Stabilizer)
+- Substancja kondycjonująca (Conditioning Agent)
+- Antyoksydant (Antioxidant)
+- Substancja zwiększająca lepkość (Viscosity Enhancer)
+- Substancja powierzchniowo czynna (Surfactant)
+- Barwnik (Colorant)
+- Zapach (Fragrance)
+- Regulator pH (pH Adjuster)
+- Peeling (Exfoliant)
+- Fotofilter (UV Filter)
+
+Odpowiedz tylko nazwami funkcji, oddzielonymi przecinkami, bez dodatkowych wyjaśnień.
+
+Przykład odpowiedzi: "Nawilżacz, Rozpuszczalnik, Stabilizator"</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>ratingPrompt</name>
+            <label>Rating Prompt</label>
+            <label lang="de-DE">Bewertungs-Prompt</label>
+            <label lang="pl-PL">Prompt oceny</label>
+            <helpText>Placeholder: {INGREDIENT_NAME}</helpText>
+            <defaultValue>Oceń bezpieczeństwo składnika kosmetycznego "{INGREDIENT_NAME}" w skali 1-3.
+
+Kryteria oceny:
+1 = BEZPIECZNY - składnik uznawany za bezpieczny przez organizacje regulacyjne, minimalne ryzyko działań niepożądanych, szeroko akceptowany w kosmetykach
+2 = OSTROŻNOŚĆ - składnik generalnie bezpieczny, ale mogą występować ograniczenia, działania niepożądane u wrażliwych osób, lub kontrowersje
+3 = UNIKAĆ - składnik z potwierdzonymi działaniami niepożądanymi, ograniczeniami regulacyjnymi, lub poważnymi kontrowersjami bezpieczeństwa
+
+Weź pod uwagę:
+- Opinie FDA, CIR, Komisji Europejskiej
+- Udokumentowane działania niepożądane
+- Ograniczenia koncentracji w produktach
+- Kontrowersje w społeczności naukowej
+- Potencjał alergenny lub drażniący
+
+Odpowiedz tylko cyfrą: 1, 2 lub 3
+
+Przykłady:
+- Gliceryna → 1
+- Pararabeny → 2  
+- Formalin → 3</defaultValue>
+        </input-field>
+
+
+        <input-field type="textarea">
+            <name>generalFieldsPrompt</name>
+            <label>General Fields Prompt</label>
+            <label lang="de-DE">Allgemeine Felder-Prompt</label>
+            <label lang="pl-PL">Prompt pól ogólnych</label>
+            <helpText>Placeholder: {INGREDIENT_NAME}</helpText>
+            <defaultValue>Wygeneruj dodatkowe informacje o składniku kosmetycznym "{INGREDIENT_NAME}".
+
+Zwróć wynik w formacie JSON zawierającym następujące pola:
+
+{
+  "alternative_names": "nazwy alternatywne oddzielone przecinkami (po angielsku)",
+  "cas_number": "numer CAS jeśli dostępny",
+  "polish_name": "polska nazwa składnika", 
+  "resources": "przydatne linki do zewnętrznych źródeł oddzielone przecinkami (pełne URL)",
+  "natural": true/false - czy składnik jest naturalny
+}
+
+Wytyczne:
+- alternative_names: podaj 2-5 najczęściej używanych nazw alternatywnych, używaj angielskich nazw chemicznych
+- cas_number: podaj oficjalny numer CAS jeśli istnieje, w przeciwnym razie null
+- polish_name: przetłumacz nazwę na polski używając oficjalnej terminologii kosmetycznej
+- resources: znajdź 3-5 wiarygodnych źródeł (incidecoder.com, cosmeticsinfo.org, pubchem, ifscc.org)
+- natural: true jeśli składnik występuje naturalnie lub jest wydobywany z roślin/minerałów
+
+Przykład odpowiedzi:
+{
+  "alternative_names": "1,5-Pentanediol, Pentane-1,5-diol, 1,5-Dihydroxypentane",
+  "cas_number": "24634-61-5",
+  "polish_name": "Glikol pentylenowy",
+  "resources": "https://incidecoder.com/ingredients/pentylene-glycol, https://www.cosmeticsinfo.org/ingredient/pentylene-glycol",
+  "natural": false
+}
+
+Zwróć tylko poprawny JSON, bez dodatkowych komentarzy.</defaultValue>
+        </input-field>
+    </card>
+
+</config>

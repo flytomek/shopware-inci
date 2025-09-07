@@ -1,0 +1,36 @@
+{
+    "codematic": {
+        "inci": {
+            "listing": {
+                "title": "INCI Ingredients Database",
+                "description": "Discover everything about cosmetic ingredients. Comprehensive knowledge base about safety and properties of INCI ingredients.",
+                "ingredientsFound": "Ingredients found",
+                "readMore": "Read more",
+                "jumpTo": "Jump to letter",
+                "emptyTitle": "No ingredients",
+                "emptyMessage": "There are no INCI ingredients in the database yet."
+            },
+            "detail": {
+                "backToList": "← Back to ingredients list",
+                "description": "Description",
+                "safetyInformation": "Safety Information",
+                "mainFunctions": "Main Functions",
+                "technicalInfo": "Technical Information",
+                "ingredientInfo": "Ingredient Information",
+                "name": "Name",
+                "polishName": "Polish Name",
+                "casNumber": "CAS Number",
+                "alternativeNames": "Alternative Names",
+                "origin": "Origin",
+                "natural": "Natural",
+                "synthetic": "Synthetic",
+                "additionalResources": "Additional Resources",
+                "goToSource": "Go to source",
+                "safety": "Safety",
+                "ratingGood": "Good",
+                "ratingAverage": "Average",
+                "ratingBad": "Bad"
+            }
+        }
+    }
+}

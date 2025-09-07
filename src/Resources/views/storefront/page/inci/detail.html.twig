@@ -1,0 +1,227 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% set ingredient = page.inci %}
+
+{% block base_main_inner %}
+    <div class="container-main inci inci-detail">
+        {% if ingredient %}
+            {% block page_inci_detail_header %}
+                <div class="cms-section">
+                    <div class="cms-section-default">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <nav aria-label="breadcrumb">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item">
+                                                <a href="{{ url('frontend.home.page') }}">Strona główna</a>
+                                            </li>
+                                            <li class="breadcrumb-item">
+                                                <a href="{{ url('frontend.inci.list') }}">Składniki INCI</a>
+                                            </li>
+                                            <li class="breadcrumb-item active">{{ ingredient.name }}</li>
+                                        </ol>
+                                    </nav>
+
+                                    <div class="mb-4">
+                                        <h1>{{ ingredient.name }}{% if ingredient.polishName %} ({{ ingredient.polishName }}){% endif %}</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+
+            {% block page_inci_detail_content %}
+                <div class="cms-section">
+                    <div class="cms-section-default">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    {% block page_inci_detail_main %}
+                                        {% if ingredient.rating %}
+                                            <div class="mb-4">
+                                                <div class="d-flex align-items-center">
+                                                    <span class="me-3"><strong>Safety Rating:</strong></span>
+                                                    <div class="rating-indicator rating-{{ ingredient.rating }}">
+                                                        {% if ingredient.rating == 1 %}
+                                                            <span class="rating-text">{{ "codematic.inci.detail.ratingGood"|trans }}</span>
+                                                        {% elseif ingredient.rating == 2 %}
+                                                            <span class="rating-text">{{ "codematic.inci.detail.ratingAverage"|trans }}</span>
+                                                        {% else %}
+                                                            <span class="rating-text">{{ "codematic.inci.detail.ratingBad"|trans }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                        {% if ingredient.description %}
+                                            <div class="mb-5">
+                                                <h3>{{ "codematic.inci.detail.description"|trans }}</h3>
+                                                <div class="content">
+                                                    {{ ingredient.description|nl2br|raw }}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                        {% if ingredient.safetyInformation %}
+                                            <div class="mb-5">
+                                                <h3>{{ "codematic.inci.detail.safetyInformation"|trans }}</h3>
+                                                <div class="content">
+                                                    {{ ingredient.safetyInformation|nl2br|raw }}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                        {% if ingredient.resources %}
+                                            <div class="mb-5">
+                                                <h3>{{ "codematic.inci.detail.additionalResources"|trans }}</h3>
+                                                <div class="content">
+                                                    <ul>
+                                                        {% set resources = ingredient.resources|split(',') %}
+                                                        {% for resource in resources %}
+                                                            {% set url = resource|trim %}
+                                                            {% if url starts with 'http' %}
+                                                                <li>
+                                                                    <a href="{{ url }}" target="_blank" rel="noopener">{{ url }}</a>
+                                                                </li>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                    {% endblock %}
+                                </div>
+
+                                <div class="col-lg-4">
+                                    {% block page_inci_detail_sidebar %}
+                                        <div class="sticky-top" style="top: 2rem;">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h5 class="mb-0">{{ "codematic.inci.detail.ingredientInfo"|trans }}</h5>
+                                                </div>
+                                                <div class="card-body p-0">
+                                                    <table class="table table-sm mb-0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="fw-bold">{{ "codematic.inci.detail.name"|trans }}</td>
+                                                                <td>{{ ingredient.name }}</td>
+                                                            </tr>
+                                                            {% if ingredient.polishName %}
+                                                            <tr>
+                                                                <td class="fw-bold">{{ "codematic.inci.detail.polishName"|trans }}</td>
+                                                                <td>{{ ingredient.polishName }}</td>
+                                                            </tr>
+                                                            {% endif %}
+                                                            {% if ingredient.alternativeNames %}
+                                                            <tr>
+                                                                <td class="fw-bold">{{ "codematic.inci.detail.alternativeNames"|trans }}</td>
+                                                                <td>{{ ingredient.alternativeNames }}</td>
+                                                            </tr>
+                                                            {% endif %}
+                                                            {% if ingredient.casNumber %}
+                                                            <tr>
+                                                                <td class="fw-bold">{{ "codematic.inci.detail.casNumber"|trans }}</td>
+                                                                <td><code>{{ ingredient.casNumber }}</code></td>
+                                                            </tr>
+                                                            {% endif %}
+                                                            {% if ingredient.natural is not null %}
+                                                            <tr>
+                                                                <td class="fw-bold">{{ "codematic.inci.detail.origin"|trans }}</td>
+                                                                <td>{% if ingredient.natural %}{{ "codematic.inci.detail.natural"|trans }}{% else %}{{ "codematic.inci.detail.synthetic"|trans }}{% endif %}</td>
+                                                            </tr>
+                                                            {% endif %}
+                                                            {% if ingredient.mainFunctions %}
+                                                            <tr>
+                                                                <td class="fw-bold">{{ "codematic.inci.detail.mainFunctions"|trans }}</td>
+                                                                <td>{{ ingredient.mainFunctions }}</td>
+                                                            </tr>
+                                                            {% endif %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <a href="{{ url('frontend.inci.list') }}" class="btn btn-outline-primary">
+                                            {{ "codematic.inci.detail.backToList"|trans }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block base_head %}
+    {{ parent() }}
+    {% if ingredient %}
+
+        <!-- Custom CSS -->
+        <style>
+            .rating-indicator {
+                display: inline-block;
+                padding: 8px 16px;
+                border-radius: 20px;
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            .rating-indicator.rating-1 {
+                background-color: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+            .rating-indicator.rating-2 {
+                background-color: #fff3cd;
+                color: #856404;
+                border: 1px solid #faeec7;
+            }
+            .rating-indicator.rating-3 {
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+            .rating-text {
+                font-size: 13px;
+                font-weight: 600;
+            }
+        </style>
+
+        <!-- Open Graph -->
+        <meta property="og:title" content="{{ ingredient.name }} - Składniki INCI">
+        <meta property="og:description" content="{% if ingredient.description %}{{ ingredient.description|length > 200 ? ingredient.description|slice(0, 197) ~ '...' : ingredient.description }}{% else %}Szczegółowe informacje o składniku kosmetycznym {{ ingredient.name }}.{% endif %}">
+        <meta property="og:type" content="article">
+        <meta property="og:url" content="{{ url('frontend.inci.detail', {'slug': ingredient.slug}) }}">
+
+        <!-- JSON-LD Schema -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "{{ ingredient.name }}{% if ingredient.polishName %} - {{ ingredient.polishName }}{% endif %}",
+            "description": "{% if ingredient.description %}{{ ingredient.description|e('html_attr') }}{% endif %}",
+            "url": "{{ url('frontend.inci.detail', {'slug': ingredient.slug}) }}",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ url('frontend.inci.detail', {'slug': ingredient.slug}) }}"
+            }
+        }
+        </script>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{
+    "codematic": {
+        "inci": {
+            "listing": {
+                "title": "Baza składników INCI",
+                "description": "Odkryj wszystko o składnikach kosmetycznych. Kompleksowa baza wiedzy o bezpieczeństwie i właściwościach składników INCI.",
+                "ingredientsFound": "znalezionych składników",
+                "readMore": "Czytaj więcej",
+                "jumpTo": "Przejdź do",
+                "emptyTitle": "Brak składników",
+                "emptyMessage": "W bazie nie ma jeszcze żadnych składników INCI."
+            },
+            "detail": {
+                "backToList": "← Powrót do listy składników",
+                "description": "Opis",
+                "safetyInformation": "Informacje o bezpieczeństwie",
+                "mainFunctions": "Główne funkcje",
+                "technicalInfo": "Informacje techniczne",
+                "ingredientInfo": "Informacje o składniku",
+                "name": "Nazwa",
+                "polishName": "Nazwa polska",
+                "casNumber": "Numer CAS",
+                "alternativeNames": "Nazwy alternatywne",
+                "origin": "Pochodzenie",
+                "natural": "Naturalne",
+                "synthetic": "Syntetyczne",
+                "additionalResources": "Dodatkowe źródła",
+                "goToSource": "Przejdź do źródła",
+                "safety": "Bezpieczeństwo",
+                "ratingGood": "Dobry",
+                "ratingAverage": "Przeciętny",
+                "ratingBad": "Zły"
+            }
+        }
+    }
+}

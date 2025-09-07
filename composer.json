@@ -1,0 +1,33 @@
+{
+  "name": "codematic/shopware6-inci",
+  "description": "Cosmetic ingredients database plugin for Shopware 6",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Codematic"
+    }
+  ],
+  "license": "MIT",
+  "require": {
+    "shopware/core": "^6.6 || ^6.7"
+  },
+  "extra": {
+    "shopware-plugin-class": "Codematic\\Inci\\CodematicInci",
+    "label": {
+      "de-DE": "INCI Ingredients Database",
+      "en-GB": "INCI Ingredients Database",
+      "pl-PL": "Baza Składników INCI"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Codematic\\Inci\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "symfony/runtime": true
+    }
+  }
+}

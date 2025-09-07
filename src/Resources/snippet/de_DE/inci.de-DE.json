@@ -1,0 +1,36 @@
+{
+    "codematic": {
+        "inci": {
+            "listing": {
+                "title": "INCI Inhaltsstoffe Datenbank",
+                "description": "Entdecken Sie alles über kosmetische Inhaltsstoffe. Umfassende Wissensbasis über Sicherheit und Eigenschaften von INCI-Inhaltsstoffen.",
+                "ingredientsFound": "Inhaltsstoffe gefunden",
+                "readMore": "Weiterlesen",
+                "jumpTo": "Springe zu Buchstabe",
+                "emptyTitle": "Keine Inhaltsstoffe",
+                "emptyMessage": "Es sind noch keine INCI-Inhaltsstoffe in der Datenbank."
+            },
+            "detail": {
+                "backToList": "← Zurück zur Inhaltsstoffe-Liste",
+                "description": "Beschreibung",
+                "safetyInformation": "Sicherheitsinformationen",
+                "mainFunctions": "Hauptfunktionen",
+                "technicalInfo": "Technische Informationen",
+                "ingredientInfo": "Inhaltsstoff-Informationen",
+                "name": "Name",
+                "polishName": "Polnischer Name",
+                "casNumber": "CAS-Nummer",
+                "alternativeNames": "Alternative Namen",
+                "origin": "Herkunft",
+                "natural": "Natürlich",
+                "synthetic": "Synthetisch",
+                "additionalResources": "Zusätzliche Ressourcen",
+                "goToSource": "Zur Quelle gehen",
+                "safety": "Sicherheit",
+                "ratingGood": "Gut",
+                "ratingAverage": "Durchschnittlich",
+                "ratingBad": "Schlecht"
+            }
+        }
+    }
+}

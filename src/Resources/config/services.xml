@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Entity Definition -->
+        <service id="Codematic\Inci\Core\Content\Inci\InciDefinition">
+            <tag name="shopware.entity.definition" entity="codematic_inci" />
+        </service>
+
+        <!-- OpenAI Service -->
+        <service id="Codematic\Inci\Service\OpenAIService">
+            <argument type="string">%env(OPENAI_API_KEY)%</argument>
+            <argument type="string">%env(OPENAI_MODEL)%</argument>
+            <argument type="service" id="logger"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <!-- CLI Commands -->
+        <service id="Codematic\Inci\Command\InciAddCommand">
+            <argument type="service" id="codematic_inci.repository"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Codematic\Inci\Command\InciGenerateCommand">
+            <argument type="service" id="codematic_inci.repository"/>
+            <argument type="service" id="Codematic\Inci\Service\OpenAIService"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Codematic\Inci\Command\InciRemoveCommand">
+            <argument type="service" id="codematic_inci.repository"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Codematic\Inci\Command\InciClearCommand">
+            <argument type="service" id="codematic_inci.repository"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Codematic\Inci\Command\InciShowCommand">
+            <argument type="service" id="codematic_inci.repository"/>
+            <tag name="console.command"/>
+        </service>
+
+        <!-- Storefront Controller -->
+        <service id="Codematic\Inci\Storefront\Controller\InciController" public="true">
+            <argument type="service" id="Codematic\Inci\Storefront\Page\Inci\InciListPageLoader"/>
+            <argument type="service" id="Codematic\Inci\Storefront\Page\Inci\InciDetailPageLoader"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- Page Loaders -->
+        <service id="Codematic\Inci\Storefront\Page\Inci\InciListPageLoader" public="true">
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="codematic_inci.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="Codematic\Inci\Storefront\Page\Inci\InciDetailPageLoader" public="true">
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="codematic_inci.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+    </services>
+</container>

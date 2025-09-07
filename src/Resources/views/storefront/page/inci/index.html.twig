@@ -1,0 +1,154 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_main_inner %}
+    <div class="container-main inci inci-listing">
+        {% block page_inci_list_header %}
+            <div class="cms-section">
+                <div class="cms-section-default">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">
+                                            <a href="{{ url('frontend.home.page') }}">Strona główna</a>
+                                        </li>
+                                        <li class="breadcrumb-item active">Składniki INCI</li>
+                                    </ol>
+                                </nav>
+
+                                <h1>{{ "codematic.inci.listing.title"|trans }}</h1>
+                                <p class="lead">
+                                    {{ "codematic.inci.listing.description"|trans }}
+                                </p>
+                                {% if page.ingredients.count > 0 %}
+                                    <p class="text-muted">{{ "codematic.inci.listing.ingredientsFound"|trans }}: {{ page.total }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block page_inci_list_content %}
+            <div class="cms-section">
+                <div class="cms-section-default">
+                    <div class="container">
+                        {% if page.ingredients.count > 0 %}
+                            {# Alphabetical table of contents #}
+                            {% set alphabeticalGroups = {} %}
+                            {% for ingredient in page.ingredients %}
+                                {% set firstLetter = ingredient.name|slice(0, 1)|upper %}
+                                {% set alphabeticalGroups = alphabeticalGroups|merge({(firstLetter): (alphabeticalGroups[firstLetter]|default([]))|merge([ingredient])}) %}
+                            {% endfor %}
+
+                            {# Table of contents navigation #}
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="alphabet-nav p-3 bg-light rounded">
+                                        <strong>{{ "codematic.inci.listing.jumpTo"|trans }}:</strong>
+                                        {% for letter in alphabeticalGroups|keys|sort %}
+                                            <a href="#letter-{{ letter }}" class="btn btn-outline-primary btn-sm me-1 mb-1">{{ letter }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# Ingredients list grouped by letter #}
+                            <div class="row">
+                                <div class="col-12">
+                                    {% for letter in alphabeticalGroups|keys|sort %}
+                                        <div class="letter-section mb-5" id="letter-{{ letter }}">
+                                            <h2 class="h3 mb-3 border-bottom pb-2">{{ letter }}</h2>
+                                            <div class="ingredient-list">
+                                                {% for ingredient in alphabeticalGroups[letter] %}
+                                                    <div class="ingredient-item py-2 border-bottom">
+                                                        <div class="d-flex justify-content-between align-items-start">
+                                                            <div class="ingredient-info flex-grow-1">
+                                                                <h4 class="h5 mb-1">
+                                                                    <a href="{{ url('frontend.inci.detail', {'slug': ingredient.slug}) }}" 
+                                                                       class="text-decoration-none">
+                                                                        {{ ingredient.name }}{% if ingredient.polishName %} ({{ ingredient.polishName }}){% endif %}
+                                                                    </a>
+                                                                </h4>
+                                                                {% if ingredient.mainFunctions %}
+                                                                    <div class="text-muted small">
+                                                                        <strong>{{ "codematic.inci.detail.mainFunctions"|trans }}:</strong> {{ ingredient.mainFunctions }}
+                                                                    </div>
+                                                                {% endif %}
+                                                            </div>
+                                                            {% if ingredient.rating %}
+                                                                <div class="ingredient-rating ms-3">
+                                                                    <span class="rating-indicator-small rating-{{ ingredient.rating }}">
+                                                                        {% if ingredient.rating == 1 %}
+                                                                            {{ "codematic.inci.detail.ratingGood"|trans }}
+                                                                        {% elseif ingredient.rating == 2 %}
+                                                                            {{ "codematic.inci.detail.ratingAverage"|trans }}
+                                                                        {% else %}
+                                                                            {{ "codematic.inci.detail.ratingBad"|trans }}
+                                                                        {% endif %}
+                                                                    </span>
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            {% block page_inci_list_empty %}
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="alert alert-info" role="alert">
+                                            <h4 class="alert-heading">{{ "codematic.inci.listing.emptyTitle"|trans }}</h4>
+                                            <p>{{ "codematic.inci.listing.emptyMessage"|trans }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block base_head %}
+    {{ parent() }}
+    
+    <!-- Custom CSS -->
+    <style>
+        .rating-indicator-small {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .rating-indicator-small.rating-1 {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .rating-indicator-small.rating-2 {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #faeec7;
+        }
+        .rating-indicator-small.rating-3 {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+    
+    <title>Baza Składników INCI - {{ page.header.activeShop.name }}</title>
+    <meta name="description" content="Kompleksowa baza składników kosmetycznych INCI z informacjami o bezpieczeństwie, właściwościach i zastosowaniu.">
+{% endblock %}
