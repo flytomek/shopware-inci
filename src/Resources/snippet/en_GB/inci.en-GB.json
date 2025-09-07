@@ -27,6 +27,7 @@
                 "additionalResources": "Additional Resources",
                 "goToSource": "Go to source",
                 "safety": "Safety",
+                "safetyRating": "Safety Rating",
                 "ratingGood": "Good",
                 "ratingAverage": "Average",
                 "ratingBad": "Bad"

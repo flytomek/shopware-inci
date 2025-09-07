@@ -27,9 +27,10 @@
                 "additionalResources": "Dodatkowe źródła",
                 "goToSource": "Przejdź do źródła",
                 "safety": "Bezpieczeństwo",
-                "ratingGood": "Dobry",
-                "ratingAverage": "Przeciętny",
-                "ratingBad": "Zły"
+                "safetyRating": "Ocena",
+                "ratingGood": "Dobra",
+                "ratingAverage": "Przeciętna",
+                "ratingBad": "Zła"
             }
         }
     }

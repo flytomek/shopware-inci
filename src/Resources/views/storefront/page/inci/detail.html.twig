@@ -43,7 +43,7 @@
                                         {% if ingredient.rating %}
                                             <div class="mb-4">
                                                 <div class="d-flex align-items-center">
-                                                    <span class="me-3"><strong>Safety Rating:</strong></span>
+                                                    <span class="me-3"><strong>{{ "codematic.inci.detail.safetyRating"|trans }}:</strong></span>
                                                     <div class="rating-indicator rating-{{ ingredient.rating }}">
                                                         {% if ingredient.rating == 1 %}
                                                             <span class="rating-text">{{ "codematic.inci.detail.ratingGood"|trans }}</span>
@@ -99,7 +99,7 @@
 
                                 <div class="col-lg-4">
                                     {% block page_inci_detail_sidebar %}
-                                        <div class="sticky-top" style="top: 2rem;">
+                                        <div class="sticky-top" style="top: 6rem;">
                                             <div class="card">
                                                 <div class="card-header">
                                                     <h5 class="mb-0">{{ "codematic.inci.detail.ingredientInfo"|trans }}</h5>
